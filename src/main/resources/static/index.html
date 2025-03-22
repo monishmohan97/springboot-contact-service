@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Service API</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .endpoint {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        .endpoint h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+        }
+        .get {
+            background-color: #27ae60;
+        }
+        .post {
+            background-color: #f39c12;
+        }
+        .put {
+            background-color: #3498db;
+        }
+        .delete {
+            background-color: #e74c3c;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .formats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .format {
+            padding: 3px 8px;
+            background-color: #eee;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact Service API</h1>
+        <p>A Spring Boot REST API for managing contacts with support for JSON, XML, CSV, and plain text formats.</p>
+    </header>
+
+    <section>
+        <h2>About the Application</h2>
+        <p>This Contact Service API provides a comprehensive solution for managing contact information. Built with Spring Boot and using SQLite for data persistence, it offers:</p>
+        <ul>
+            <li><strong>CRUD Operations:</strong> Create, read, update, and delete contact records</li>
+            <li><strong>Content Negotiation:</strong> Get responses in JSON, XML, CSV, or plain text formats</li>
+            <li><strong>Pagination:</strong> Control the amount of data returned in listing requests</li>
+            <li><strong>OpenAPI Documentation:</strong> Interactive documentation for exploring and testing the API</li>
+            <li><strong>SQLite Database:</strong> Lightweight, file-based database for persistent storage</li>
+            <li><strong>Containerization:</strong> Docker support for easy deployment</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Available Endpoints</h2>
+        
+        <div class="endpoint">
+            <h3><span class="method get">GET</span> /api/contacts</h3>
+            <p>Returns a paginated list of all contacts.</p>
+            <p><strong>Query Parameters:</strong></p>
+            <ul>
+                <li><code>page</code>: Page number (default: 1)</li>
+                <li><code>limit</code>: Number of items per page (default: 10)</li>
+                <li><code>format</code>: Response format (json, xml, csv, txt)</li>
+            </ul>
+            <div class="formats">
+                <span class="format">JSON</span>
+                <span class="format">XML</span>
+                <span class="format">CSV</span>
+                <span class="format">Text</span>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method get">GET</span> /api/contacts/{id}</h3>
+            <p>Returns a specific contact by its ID.</p>
+            <p><strong>Path Parameters:</strong></p>
+            <ul>
+                <li><code>id</code>: The ID of the contact to retrieve</li>
+            </ul>
+            <p><strong>Query Parameters:</strong></p>
+            <ul>
+                <li><code>format</code>: Response format (json, xml, csv, txt)</li>
+            </ul>
+            <div class="formats">
+                <span class="format">JSON</span>
+                <span class="format">XML</span>
+                <span class="format">CSV</span>
+                <span class="format">Text</span>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method post">POST</span> /api/contacts</h3>
+            <p>Creates a new contact.</p>
+            <p><strong>Request Body:</strong> Contact object in JSON or XML format</p>
+            <div class="formats">
+                <span class="format">JSON</span>
+                <span class="format">XML</span>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method put">PUT</span> /api/contacts/{id}</h3>
+            <p>Updates an existing contact.</p>
+            <p><strong>Path Parameters:</strong></p>
+            <ul>
+                <li><code>id</code>: The ID of the contact to update</li>
+            </ul>
+            <p><strong>Request Body:</strong> Updated contact object in JSON or XML format</p>
+            <div class="formats">
+                <span class="format">JSON</span>
+                <span class="format">XML</span>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3><span class="method delete">DELETE</span> /api/contacts/{id}</h3>
+            <p>Deletes a contact.</p>
+            <p><strong>Path Parameters:</strong></p>
+            <ul>
+                <li><code>id</code>: The ID of the contact to delete</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Content Negotiation</h2>
+        <p>This API supports multiple response formats:</p>
+        <ul>
+            <li>Use the <code>format</code> query parameter: <code>/api/contacts?format=xml</code></li>
+            <li>Or use the <code>Accept</code> header in your request</li>
+        </ul>
+        <p>Supported formats:</p>
+        <ul>
+            <li><strong>JSON</strong> (default): <code>/api/contacts?format=json</code></li>
+            <li><strong>XML</strong>: <code>/api/contacts?format=xml</code></li>
+            <li><strong>CSV</strong>: <code>/api/contacts?format=csv</code></li>
+            <li><strong>Text</strong>: <code>/api/contacts?format=txt</code></li>
+        </ul>
+    </section>
+
+    <div class="buttons">
+        <a href="/swagger-ui.html" class="button">Interactive API Documentation</a>
+        <a href="/api-docs" class="button">OpenAPI Specification</a>
+        <a href="/api/contacts" class="button">View All Contacts</a>
+    </div>
+
+    <footer>
+        <p>Contact Service API &copy; 2023</p>
+    </footer>
+</body>
+</html> 

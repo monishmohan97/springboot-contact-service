@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  contact-service:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - contact-data:/app/data
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JAVA_OPTS=-Xmx512m
+
+volumes:
+  contact-data:
+    driver: local 
