@@ -8,4 +8,5 @@ FROM eclipse-temurin:21
 WORKDIR /app
 COPY --from=build-stage /app/target/vin-contact-service-0.0.1-SNAPSHOT.jar ./app.jar
 EXPOSE 8080
-CMD ["java","-jar","/app/app.jar"]
+ENTRYPOINT ["java"]
+CMD ["-jar","/app/app.jar"]
